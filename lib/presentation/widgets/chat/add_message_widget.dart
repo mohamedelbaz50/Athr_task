@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddMessageWidget extends StatelessWidget {
-  const AddMessageWidget({
+  AddMessageWidget({
     super.key,
     required this.cubit,
   });
 
   final ChatCubit cubit;
-
+  final TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,8 +39,11 @@ class AddMessageWidget extends StatelessWidget {
               child: SizedBox(
             height: 55.h,
             child: TextFormField(
+              controller: controller,
               onFieldSubmitted: (value) {
-                cubit.addMessage(text: value);
+                cubit.addMessage(text: value).then((_) {
+                  controller.clear();
+                });
               },
               decoration: InputDecoration(
                   fillColor: Colors.white,

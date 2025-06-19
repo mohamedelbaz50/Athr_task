@@ -51,7 +51,6 @@ class ChatCubit extends Cubit<ChatState> {
     if (text.isNotEmpty) {
       messages.add(message);
     }
-
     emit(MessageAdded());
   }
 
